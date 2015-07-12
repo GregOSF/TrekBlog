@@ -14,6 +14,7 @@ $(function() {
       $('#new-Posts').append($blogHtml);
     },
 
+    // List all blog posts
     all: function() {
       $.get ('/blogposts', function(data) {
         var allPosts = data;
@@ -26,12 +27,38 @@ $(function() {
 
     },
 
-    setupView: function () {
+    // Post new data
+    create: function(newUser, newLoc, newDesc) {
+      var newPostData = {user: newUser, location: newLoc, post: newDesc};
+          $.post ('/blogposts', newPostData, function(data) {
+            var newPost = data;
+            postController.render(newPost)
+          });
+    },
+
+    setupView: function() {
+      // Append existing blog posts
       postController.all();
+
+      // Add event handler to new blogpost
+      $('#new-Entry').on('submit', function(event) {
+        event.preventDefault();
+
+        // create new blog post
+        var $newUser = $('#user-name').val();
+        var $newLoc = $('#user-location').val();
+        var $newDesc = $('#user-post').val();
+        postController.create($newUser, $newLoc, $newDesc);
+
+        // form reset
+        $(this)[0].reset();
+        $newUser.focus();
+      });
+
     }
 
 
-};
+  };
 
   postController.setupView();
 
