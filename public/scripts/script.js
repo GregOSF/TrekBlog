@@ -11,7 +11,7 @@ $(function() {
 
     render: function(blogObj) {
       var $blogHtml = $(postController.template(blogObj));
-      $('#new-Posts').append($blogHtml);
+      $('#new-Posts').prepend($blogHtml);
     },
 
     // List all blog posts
@@ -52,7 +52,7 @@ $(function() {
 
         // form reset
         $(this)[0].reset();
-        $newUser.focus();
+        $('#user-name').focus();
       });
 
     }
