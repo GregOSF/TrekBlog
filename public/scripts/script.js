@@ -1,21 +1,57 @@
 $(function() {
 
   
-  function NewPost(user, loc, post) {
+
+  var postController = {
+
+    // phrase template
+    template: _.template($('#post-template').html()),
+
+    // pass blog posts through template and append to view
+
+    render: function(blogObj) {
+      var $blogHtml = $(postController.template(blogObj));
+      $('#new-Posts').append($blogHtml);
+    },
+
+    all: function() {
+      $.get ('/blogposts', function(data) {
+        var allPosts = data;
+
+        _.each(allPosts, function(post) {
+          postController.render(post);
+        });
+      });
+
+
+    },
+
+    setupView: function () {
+      postController.all();
+    }
+
+
+};
+
+  postController.setupView();
+
+
+
+  /*function NewPost(user, loc, post) {
     this.user = user;
     this.loc = loc;
     this.post = post;
-  }
+  }*/
 
   
 
-  NewPost.all = [
+  /*NewPost.all = [
         new NewPost('Jack', 'Patagonia', 'Cupcake ipsum dolor sit. Amet I love liquorice jujubes pudding croissant I love pudding. Apple pie macaroon toffee jujubes pie tart cookie applicake caramels. Halvah macaroon I love lollipop. Wypas I love pudding brownie cheesecake tart jelly-o. Bear claw cookie chocolate bar jujubes toffee.'),
         new NewPost('Alice', 'Himalayas', 'Cupcake ipsum dolor sit. Amet I love liquorice jujubes pudding croissant I love pudding. Apple pie macaroon toffee jujubes pie tart cookie applicake caramels. Halvah macaroon I love lollipop. Wypas I love pudding brownie cheesecake tart jelly-o. Bear claw cookie chocolate bar jujubes toffee.'),
         new NewPost('Sarah', 'Grand Canyon', 'Cupcake ipsum dolor sit. Amet I love liquorice jujubes pudding croissant I love pudding. Apple pie macaroon toffee jujubes pie tart cookie applicake caramels. Halvah macaroon I love lollipop. Wypas I love pudding brownie cheesecake tart jelly-o. Bear claw cookie chocolate bar jujubes toffee.')
-  ];
+  ];*/
 
-  NewPost.prototype.save = function() {
+ /* NewPost.prototype.save = function() {
     NewPost.all.push(this);
     console.log(NewPost.all);
   };
@@ -58,26 +94,26 @@ $(function() {
   $newEntry[0].reset();
   $('#user-name').focus();
   });
-
+*/
   
 /*  $newPosts.on('click', '.blogPost', function() {
     $(this).toggleClass('removePost');
   });*/
 
-  var $blogPost = $('.blogPost')
-  var $removeButton = $('.removeButton')
+/*  var $blogPost = $('.blogPost')
+  var $removeButton = $('.removeButton')*/
 
   /*$blogPost.on("click", function (event) {
     event.preventDefault();
     var $blogPosts = $(this).closest(".blogPost");
     var index = $blogPost.attr('data-index');
     $(this).fadeOut("slow");*/
-
+/*
     $(document).on("click", '.blogPost', function (event) {
       event.preventDefault();
       var $blogPosts = $(this).closest(".blogPost");
       var index = $blogPost.attr('data-index');
-      $(this).fadeOut("slow");
+      $(this).fadeOut("slow");*/
 
 /*  $('#new-Posts').on("click", function(event) {
   event.preventDefault();
@@ -85,20 +121,19 @@ $(function() {
   });
 */
   
-  NewPost.all.splice(index, 1);
-  console.log(NewPost.all);
+/*  NewPost.all.splice(index, 1);
+  console.log(NewPost.all);*/
 
 
 /*  $blogPost.remove();*/
 
 
-  $('.blogPost').each(function(index) {
+/*  $('.blogPost').each(function(index) {
     $(this).attr('data-index', index);
  
-  });
+  });*/
 });
 
 
 
-});
 
