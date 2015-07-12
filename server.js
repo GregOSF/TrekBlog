@@ -17,7 +17,6 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public/views/index.html');
 });
 
-
 var posts = [
 	{id: 1, user: 'Jack', location: 'Patagonia', post: 'Its awesome'},
 	{id: 2, user: 'Sarah', location: 'Himalayas', post: 'Its sweet' },
@@ -26,9 +25,27 @@ var posts = [
 
 //API Routes
 
+// blogposts
 app.get ('/blogposts', function(req, res) {
 	res.json(posts);
 });
+
+// Create new blogposts
+app.post ('/blogposts', function(req, res) {
+	var newPost = req.body;
+	// set sequential id (last id in `phrases` array + 1)
+	if (posts.length > 0) {
+	  newPost.id = posts[posts.length - 1].id +  1;
+	} else {
+	  newPost.id = 0;
+	};
+
+	posts.push(newPost);
+	res.json(newPost);
+
+});
+
+
 
 
 // listen on port 3000
