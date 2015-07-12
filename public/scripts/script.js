@@ -67,11 +67,17 @@ $(function() {
   var $blogPost = $('.blogPost')
   var $removeButton = $('.removeButton')
 
-  $blogPost.on("click", function (event) {
+  /*$blogPost.on("click", function (event) {
     event.preventDefault();
     var $blogPosts = $(this).closest(".blogPost");
     var index = $blogPost.attr('data-index');
-    $(this).fadeOut("slow");
+    $(this).fadeOut("slow");*/
+
+    $(document).on("click", '.blogPost', function (event) {
+      event.preventDefault();
+      var $blogPosts = $(this).closest(".blogPost");
+      var index = $blogPost.attr('data-index');
+      $(this).fadeOut("slow");
 
 /*  $('#new-Posts').on("click", function(event) {
   event.preventDefault();
