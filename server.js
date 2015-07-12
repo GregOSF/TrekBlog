@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 var posts = [
 	{id: 1, user: 'Jack', location: 'Patagonia', post: 'Its awesome'},
 	{id: 2, user: 'Sarah', location: 'Himalayas', post: 'Its sweet' },
-	{id: 1, user: 'Rob', location: 'Grand Canyon', post: 'Its cool' }
+	{id: 3, user: 'Rob', location: 'Grand Canyon', post: 'Its cool' }
 ];
 
 //API Routes
@@ -45,7 +45,27 @@ app.post ('/blogposts', function(req, res) {
 
 });
 
+// Update phrase
+app.put ('/blogposts/:id', function (req, res) {
+	//set the value of id
+	var targetId = parseInt(req.params.id);
+	
+	// Find item in posts array matching the ID
+	var foundPost = _.findWhere(posts, {id: targetId});
 
+	// Edit User
+	foundPost.user = req.body.user;
+
+	// Edit Location
+	foundPost.location = req.body.location;
+
+	// Edit Description
+	foundPost.post = req.body.post;
+
+	res.json(foundPost);
+
+
+});
 
 
 // listen on port 3000
