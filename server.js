@@ -13,9 +13,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 var posts = [
-	{id: 1, user: 'Jack', location: 'Patagonia', post: 'Its awesome'},
-	{id: 2, user: 'Sarah', location: 'Himalayas', post: 'Its sweet' },
-	{id: 3, user: 'Rob', location: 'Grand Canyon', post: 'Its cool' }
+	{id: 1, user: 'Jack', place: 'Patagonia', post: 'Its awesome'},
+	{id: 2, user: 'Sarah', place: 'Himalayas', post: 'Its sweet' },
+	{id: 3, user: 'Rob', place: 'Grand Canyon', post: 'Its cool' }
 ];
 
 
@@ -60,7 +60,7 @@ app.post ('/blogposts', function(req, res) {
 });
 
 // Update phrase
-app.put ('/blogposts/:id', function (req, res) {
+app.put ('/blogposts/:id', function(req, res) {
 	//set the value of id
 	var targetId = parseInt(req.params.id);
 	
@@ -70,8 +70,8 @@ app.put ('/blogposts/:id', function (req, res) {
 	// Edit User
 	foundPost.user = req.body.user;
 
-	// Edit Location
-	foundPost.location = req.body.location;
+	// Edit place
+	foundPost.place = req.body.place;
 
 	// Edit Description
 	foundPost.post = req.body.post;
@@ -81,6 +81,23 @@ app.put ('/blogposts/:id', function (req, res) {
 
 });
 
+app.delete('/blogposts/:id', function(req, res) {
+  
+  // set the value of the id
+  var targetId = parseInt(req.params.id);
+
+  // find item in `phrases` array matching the id
+  var foundPost = _.findWhere(posts, {id: targetId});
+
+  // get the index of the found item
+  var index = posts.indexOf(foundPost);
+  
+  // remove the item at that index, only remove 1 item
+  posts.splice(index, 1);
+  
+  // send back deleted object
+  res.json(foundPost);
+});
 
 // listen on port 3000
 app.listen(3000, function () {
