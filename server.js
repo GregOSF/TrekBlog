@@ -13,9 +13,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 var posts = [
-	{id: 1, user: 'Jack', place: 'Patagonia', post: 'Its awesome'},
-	{id: 2, user: 'Sarah', place: 'Himalayas', post: 'Its sweet' },
-	{id: 3, user: 'Rob', place: 'Grand Canyon', post: 'Its cool' }
+	{id: 1, user: 'Jack', place: 'Patagonia', post: "Drinking vinegar taxidermy normcore pug freegan, distillery bitters irony artisan lo-fi chillwave. Lomo Odd Future McSweeney's, twee before they sold out fingerstache stumptown. Migas keffiyeh ethical, Schlitz deep v food truck Kickstarter mumblecore seitan Pinterest Godard salvia cardigan YOLO. Chambray tofu organic, cronut hella High Life irony stumptown migas banh mi VHS Tumblr wolf slow-carb. Listicle Tumblr mumblecore keytar, master cleanse art party tattooed letterpress. Keytar fashion axe wolf post-ironic banh mi. Tilde blog direct trade bicycle rights, selvage banjo Blue Bottle craft beer PBR&B ennui."},
+	{id: 2, user: 'Sarah', place: 'Himalayas', post: "Pour-over fixie DIY Shoreditch. Freegan dreamcatcher skateboard trust fund. Cold-pressed organic roof party heirloom 3 wolf moon pork belly. Fap keytar post-ironic, selfies swag ugh Schlitz. Pug XOXO direct trade, PBR pop-up butcher locavore Echo Park. Intelligentsia Kickstarter beard, Banksy +1 pour-over mumblecore Wes Anderson locavore before they sold out messenger bag artisan roof party brunch Schlitz. Banksy Shoreditch pop-up master cleanse." },
+	{id: 3, user: 'Rob', place: 'Grand Canyon', post: "Sartorial Shoreditch viral tattooed Schlitz Williamsburg. Odd Future Williamsburg next level 3 wolf moon semiotics migas. Forage cardigan tilde polaroid McSweeney's. Freegan irony bespoke literally Banksy Helvetica. Raw denim chambray cornhole Odd Future, flexitarian street art normcore salvia distillery. Echo Park disrupt tilde synth. Banksy distillery kale chips, Thundercats Kickstarter crucifix next level synth art party squid tilde normcore." }
 ];
 
 
