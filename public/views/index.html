@@ -63,7 +63,7 @@
   <!-- underscore template -->
   <script type="text/template" id="post-template">
 
-    <div class="blogPost" id="blog-<%= id %>">
+    <div class="blogPost" id="blog-<%= id %>" data-id="<%= id %>">
       <p>
         <span style="font-weight:bold">Trekker:</span> <%= user %>
       </p>
@@ -73,6 +73,22 @@
       <p>
        <span style="font-weight:bold">About My Trek:</span> <%= post %>
       </p>
+    </div>
+      <a class="edit-pencil" data-toggle="collapse" data-target='#update-<%= id %>'>
+        <<span class="glyphicon glyphicon-pencil edit"></span>
+      </a>
+      
+      <div class="collapse" id="update-<%= id %>">
+        <br>
+        <form class="form-inline update-post">
+          <input type="text" class="form-control updated-user" value="<%= user %>" placeholder="New User?">
+          <input type="text" class="form-control updated-loc" value="<%= location %>" placeholder="New Location?">
+          <input type="text" class="form-control updated-post" value="<%= post %>" placeholder="New Description of Hike?">
+          <input type="submit" class="btn btn-default" value="Update Your Post">
+        </form>
+      </div>
+
+
       <button type="button" class="btn btn-default btn-sm removeButton">
         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Remove Post From List
         </button>
