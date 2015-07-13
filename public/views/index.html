@@ -80,7 +80,6 @@
        <span style="font-weight:bold">About My Trek:</span> <%= post %>
       </p>
     
-
       <a class="edit-pencil" data-toggle="collapse" data-target='#update-<%= id %>'>
         <span class="glyphicon glyphicon-pencil edit"></span>
       </a>
@@ -90,7 +89,7 @@
         <form class="form-inline update-post">
           <input type="text" class="form-control updated-user" value="<%= user %>" placeholder="New User?">
           <input type="text" class="form-control updated-loc" value="<%= place %>" placeholder="New place?">
-          <input type="text" class="form-control updated-post" value="<%= post %>" placeholder="New Description of Hike?">
+          <input type="text" class="form-control updated-post" value="<%= post %>" placeholder="New Description of Hike?"></textarea>
           <input type="submit" class="btn btn-default" value="Update Your Post">
         </form>
       </div>
@@ -101,6 +100,7 @@
         </button>
       <hr>
     </div>
+    
   </script>
 
 
