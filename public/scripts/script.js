@@ -36,6 +36,60 @@ $(function() {
           });
     },
 
+    // Update existing posts
+    update: function (postId, updatedUser, updatedLoc, updatedDesc) {
+      $.ajax( {
+        type: 'PUT',
+        url: '/blogposts/' + postId,
+        data: {
+          user: updatedUser,
+          location: updatedLoc,
+          post: updatedDesc
+        },
+        success: function (data) {
+          var updatedPost = data;
+
+          var $blogHtml = $(postController.template(updatedPost));
+          $('#blog-' + postId).replaceWith($blogHtml);
+        }
+
+      });
+    },
+
+
+    // Event Handlers for Updating/Deleting
+
+    addEventHandlers: function() {
+      $('#new-Posts')
+
+          // for update: submit event on `.update-post` form
+          .on('submit', '.update-post', function(event) {
+            event.preventDefault();
+            
+            // find the posts's id (stored in HTML as `data-id`)
+            var postId = $(this).closest('.blogPost').attr('data-id');
+            
+            // udpate the phrase with form data
+            var updatedUser = $(this).find('.update-user').val();
+            var updatedLoc = $(this).find('.update-loc').val();
+            var updatedDesc = $(this).find('.update-post').val();
+            postController.update(postId, updatedUser, updatedLoc, updatedDesc);
+          });
+                      
+          // for delete: click event on `.delete-phrase` button
+          /*.on('click', '.delete-phrase', function(event) {
+            event.preventDefault();
+
+            // find the phrase's id
+            var phraseId = $(this).closest('.phrase').attr('data-id');
+            
+            // delete the phrase
+            phrasesController.delete(phraseId);
+          });*/
+      },
+
+    
+
     setupView: function() {
       // Append existing blog posts
       postController.all();
