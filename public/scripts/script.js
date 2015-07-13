@@ -22,6 +22,7 @@ $(function() {
         _.each(allPosts, function(post) {
           postController.render(post);
         });
+        postController.addEventHandlers();
       });
 
 
@@ -74,31 +75,30 @@ $(function() {
     addEventHandlers: function() {
       $('#new-Posts')
 
-          // for update: submit event on `.update-post` form
-          .on('submit', '.update-post', function(event) {
-            event.preventDefault();
-            
-            // find the posts's id (stored in HTML as `data-id`)
-            var postId = $(this).closest('.blogPost').attr('data-id');
-            
-            // udpate the phrase with form data
-            var updatedUser = $(this).find('.updated-user').val();
-            var updatedLoc = $(this).find('.updated-loc').val();
-            var updatedDesc = $(this).find('.updated-post').val();
-            postController.update(postId, updatedUser, updatedLoc, updatedDesc);
-          })
+        .on('submit', '.update-post', function(event) {
+        event.preventDefault();
+        console.log("poop");
+        // find the posts's id (stored in HTML as `data-id`)
+        var postId = $(this).closest('.blogPost').attr('data-id');
+        
+        // udpate the phrase with form data
+        var updatedUser = $(this).find('.updated-user').val();
+        var updatedLoc = $(this).find('.updated-loc').val();
+        var updatedDesc = $(this).find('.updated-post').val();
+        postController.update(postId, updatedUser, updatedLoc, updatedDesc);
+      })
                       
-          // for delete: click event on `.delete-phrase` button
-          .on('click', '.removeButton', function(event) {
-            event.preventDefault();
+        // for delete: click event on `.delete-phrase` button
+      .on('click', '.removeButton', function(event) {
+        event.preventDefault();
 
-            // find the phrase's id
-            var postId = $(this).closest('.blogPost').attr('data-id');
-            
-            // delete the phrase
-            postController.delete(postId);
-          });
-      },
+        // find the phrase's id
+        var postId = $(this).closest('.blogPost').attr('data-id');
+        
+        // delete the phrase
+        postController.delete(postId);
+      });
+    },
 
     
 
@@ -127,7 +127,6 @@ $(function() {
   };
 
   postController.setupView();
-
 
 
   /*function NewPost(user, loc, post) {
