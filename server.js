@@ -45,7 +45,7 @@ app.get('/blogposts/:id', function (req, res) {
 
 
 // Create new blogposts
-app.post ('/blogposts', function(req, res) {
+app.post ('/blogposts', function (req, res) {
 	var newPost = req.body;
 	// set sequential id (last id in `phrases` array + 1)
 	if (posts.length > 0) {
@@ -60,7 +60,7 @@ app.post ('/blogposts', function(req, res) {
 });
 
 // Update phrase
-app.put ('/blogposts/:id', function(req, res) {
+app.put ('/blogposts/:id', function (req, res) {
 	//set the value of id
 	var targetId = parseInt(req.params.id);
 	
@@ -77,11 +77,12 @@ app.put ('/blogposts/:id', function(req, res) {
 	foundPost.post = req.body.post;
 
 	res.json(foundPost);
+	
 
 
 });
 
-app.delete('/blogposts/:id', function(req, res) {
+app.delete('/blogposts/:id', function (req, res) {
   
   // set the value of the id
   var targetId = parseInt(req.params.id);
