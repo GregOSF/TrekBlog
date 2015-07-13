@@ -28,8 +28,8 @@ $(function() {
     },
 
     // Post new data
-    create: function(newUser, newLoc, newDesc) {
-      var newPostData = {user: newUser, location: newLoc, post: newDesc};
+    create: function(newUser, newPlace, newDesc) {
+      var newPostData = {user: newUser, place: newPlace, post: newDesc};
           $.post ('/blogposts', newPostData, function(data) {
             var newPost = data;
             postController.render(newPost)
@@ -43,7 +43,7 @@ $(function() {
         url: '/blogposts/' + postId,
         data: {
           user: updatedUser,
-          location: updatedLoc,
+          place: updatedLoc,
           post: updatedDesc
         },
         success: function (data) {
@@ -56,6 +56,18 @@ $(function() {
       });
     },
 
+    delete: function(postId) {
+          // send DELETE request to server to delete phrase
+          $.ajax({
+            type: 'DELETE',
+            url: '/blogposts/' + postId,
+            success: function(data) {
+              
+              // remove deleted phrase from view
+              $('#blog-' + postId).remove();
+            }
+          });
+        },
 
     // Event Handlers for Updating/Deleting
 
@@ -70,22 +82,22 @@ $(function() {
             var postId = $(this).closest('.blogPost').attr('data-id');
             
             // udpate the phrase with form data
-            var updatedUser = $(this).find('.update-user').val();
-            var updatedLoc = $(this).find('.update-loc').val();
-            var updatedDesc = $(this).find('.update-post').val();
+            var updatedUser = $(this).find('.updated-user').val();
+            var updatedLoc = $(this).find('.updated-loc').val();
+            var updatedDesc = $(this).find('.updated-post').val();
             postController.update(postId, updatedUser, updatedLoc, updatedDesc);
-          });
+          })
                       
           // for delete: click event on `.delete-phrase` button
-          /*.on('click', '.delete-phrase', function(event) {
+          .on('click', '.removeButton', function(event) {
             event.preventDefault();
 
             // find the phrase's id
-            var phraseId = $(this).closest('.phrase').attr('data-id');
+            var postId = $(this).closest('.blogPost').attr('data-id');
             
             // delete the phrase
-            phrasesController.delete(phraseId);
-          });*/
+            postController.delete(postId);
+          });
       },
 
     
@@ -100,9 +112,9 @@ $(function() {
 
         // create new blog post
         var $newUser = $('#user-name').val();
-        var $newLoc = $('#user-location').val();
+        var $newPlace = $('#user-place').val();
         var $newDesc = $('#user-post').val();
-        postController.create($newUser, $newLoc, $newDesc);
+        postController.create($newUser, $newPlace, $newDesc);
 
         // form reset
         $(this)[0].reset();
