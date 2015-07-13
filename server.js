@@ -10,12 +10,7 @@ app.use(express.static(__dirname + '/public'));
 // tell app to use bodyParser middleware
 app.use(bodyParser.urlencoded({extended: true}));
 
-// STATIC ROUTES
 
-// root (serves index.html)
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/public/views/index.html');
-});
 
 var posts = [
 	{id: 1, user: 'Jack', location: 'Patagonia', post: 'Its awesome'},
@@ -23,12 +18,31 @@ var posts = [
 	{id: 3, user: 'Rob', location: 'Grand Canyon', post: 'Its cool' }
 ];
 
-//API Routes
 
-// blogposts
+// STATIC ROUTES
+
+// root (serves index.html)
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/public/views/index.html');
+});
+
+
 app.get ('/blogposts', function(req, res) {
 	res.json(posts);
 });
+
+app.get('/blogposts/:id', function (req, res) {
+	var targetId = parseInt(req.params.id);
+	var foundPost = _.findWhere(posts, {id: targetId});
+	res.send(foundPost);
+});
+
+//API Routes
+
+// blogposts
+
+
+
 
 // Create new blogposts
 app.post ('/blogposts', function(req, res) {
