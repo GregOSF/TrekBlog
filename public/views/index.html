@@ -27,7 +27,7 @@
               <input class="form-control" id="user-name" placeholder="Enter Your User Name" autofocus>
             </div>
             <div class="form-group">
-              <input class="form-control" id="user-location" placeholder="Where Did You Hike Today?">
+              <input class="form-control" id="user-place" placeholder="Where Did You Hike Today?">
             </div>
             <div class="form-group">
               <textarea class="form-control" rows="3" id="user-post" placeholder="Tell Everyone About Your Hike"></textarea>
@@ -68,21 +68,21 @@
         <span style="font-weight:bold">Trekker:</span> <%= user %>
       </p>
       <p>
-       <span style="font-weight:bold">Where Trekked:</span> <%= location %>
+       <span style="font-weight:bold">Where Trekked:</span> <%= place %>
       </p>
       <p>
        <span style="font-weight:bold">About My Trek:</span> <%= post %>
       </p>
     </div>
       <a class="edit-pencil" data-toggle="collapse" data-target='#update-<%= id %>'>
-        <<span class="glyphicon glyphicon-pencil edit"></span>
+        <span class="glyphicon glyphicon-pencil edit"></span>
       </a>
-      
+
       <div class="collapse" id="update-<%= id %>">
         <br>
         <form class="form-inline update-post">
           <input type="text" class="form-control updated-user" value="<%= user %>" placeholder="New User?">
-          <input type="text" class="form-control updated-loc" value="<%= location %>" placeholder="New Location?">
+          <input type="text" class="form-control updated-loc" value="<%= place %>" placeholder="New place?">
           <input type="text" class="form-control updated-post" value="<%= post %>" placeholder="New Description of Hike?">
           <input type="submit" class="btn btn-default" value="Update Your Post">
         </form>
