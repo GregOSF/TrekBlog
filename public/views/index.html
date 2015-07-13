@@ -15,22 +15,27 @@
   <title>Trek Blog</title>
 </head>
 <body>
-  <header>
-  TREKBLOG
-  </header>
+  <div class="jumbotron" id="jumbo">
+    <div class="container">
+      <h1><span id='trekblog'>TrekBlog</span></h1>
+      <p><span id="lycz">Leave Your Comfort Zone</span></p>
+    </div>
+  </div>
   <div class="container">
+
     <div class="row" id="hold-all">
       <div class="col-md-4" id="entry-form">
-        <h1>Post About Your Hike!</h1>
+        <h2>What Mountains Have You Climbed Lately</h2>
+        <br>
         <form class="text-center" id="new-Entry">
             <div class="form-group">
               <input class="form-control" id="user-name" placeholder="Enter Your User Name" autofocus>
             </div>
             <div class="form-group">
-              <input class="form-control" id="user-place" placeholder="Where Did You Hike Today?">
+              <input class="form-control" id="user-place" placeholder="Where Did You Go Today?">
             </div>
             <div class="form-group">
-              <textarea class="form-control" rows="3" id="user-post" placeholder="Tell Everyone About Your Hike"></textarea>
+              <textarea class="form-control" rows="3" id="user-post" placeholder="Describe Your Adventure..."></textarea>
             </div>
             <div class="form-group">
               <input type="submit" class="btn btn-success" value="Submit Post">
@@ -42,6 +47,7 @@
 
       <div class="col-md-8 fixed-panel" id="newPostContainer">
         <div id="new-Posts">
+        
         </div>
       </div>
     </div>
