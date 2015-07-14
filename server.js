@@ -23,12 +23,6 @@ var BlogPost = require('./models/blogpost');
 // 	{id: 3, [{user: 'Rob', place: 'Grand Canyon', post: "Sartorial Shoreditch viral tattooed Schlitz Williamsburg. Odd Future Williamsburg next level 3 wolf moon semiotics migas. Forage cardigan tilde polaroid McSweeney's. Freegan irony bespoke literally Banksy Helvetica. Raw denim chambray cornhole Odd Future, flexitarian street art normcore salvia distillery. Echo Park disrupt tilde synth. Banksy distillery kale chips, Thundercats Kickstarter crucifix next level synth art party squid tilde normcore." }
 // ];
 
-
-
-// Insert seed data into database
-
-
-
 // STATIC ROUTES
 
 // root (serves index.html)
@@ -39,57 +33,67 @@ app.get('/', function (req, res) {
 // Get all posts
 app.get ('/blogposts', function(req, res) {
 	// find all posts
-
 	BlogPost.find(function (err, posts) {
 		res.json(posts);
-		});
+	});
 });
 
-// create new phrase
+// create new blogpost
 app.post('/blogposts', function (req, res) {
-  // create new phrase with form data (`req.body`)
+  // create new blogpost with form data (`req.body`)
   var newPost = new BlogPost({
   	user: req.body.user,
   	place: req.body.place,
   	post: req.body.post
   });
-
-  // save new phrase in db
+  // save new blogpost in db
   newPost.save(function (err, savedPost) {
     res.json(savedPost);
   });
 });
 
-// get one phrase
+// get one blogpost
 app.get('/blogposts/:id', function (req, res) {
   // set the value of the id
   var targetId = req.params.id;
-
-  // find phrase in db by id
+  // find blogpost in db by id
   BlogPost.findOne({_id: targetId}, function (err, foundPost) {
     res.json(foundPost);
   });
 });
 
-// update phrase
+// update blogpost
 app.put('/blogposts/:id', function (req, res) {
   // set the value of the id
   var targetId = req.params.id;
-
-  // find phrase in db by id
+  // find blogpost in db by id
   BlogPost.findOne({_id: targetId}, function (err, foundPost) {
-    // update the phrase's word and definition
+    // update the blogpost's word and definition
     foundPost.user = req.body.user;
     foundPost.place = req.body.place;
     foundPost.post = req.body.post;
 
-    // save updated phrase in db
+    // save updated blogpost in db
     foundPost.save(function (err, savedPost) {
       res.json(savedPost);
     });
   });
 });
 
+// delete blogpost
+app.delete('/blogposts/:id', function (req, res) {
+  // set the value of the id
+  var targetId = req.params.id;
+
+  // find blogpost in db by id and remove
+  BlogPost.findOneAndRemove({_id: targetId}, function (err, deletedPost) {
+    res.json(deletedPost);
+  });
+});
+
+app.listen(3000, function () {
+  console.log('server started on localhost:3000');
+});
 // app.get('/blogposts/:id', function (req, res) {
 // 	var targetId = parseInt(req.params.id);
 // 	var foundPost = _.findWhere(posts, {id: targetId});
@@ -118,7 +122,7 @@ app.put('/blogposts/:id', function (req, res) {
 
 // });
 
-// Update phrase
+// Update blogpost
 // app.put ('/blogposts/:id', function (req, res) {
 // 	//set the value of id
 // 	var targetId = parseInt(req.params.id);
@@ -160,6 +164,3 @@ app.put('/blogposts/:id', function (req, res) {
 // });
 
 // listen on port 3000
-app.listen(3000, function () {
-  console.log('server started on localhost:3000');
-});
