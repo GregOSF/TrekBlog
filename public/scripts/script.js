@@ -1,7 +1,5 @@
 $(function() {
 
-  
-
   var postController = {
 
     // phrase template
@@ -49,26 +47,23 @@ $(function() {
         },
         success: function (data) {
           var updatedPost = data;
-
           var $blogHtml = $(postController.template(updatedPost));
           $('#blog-' + postId).replaceWith($blogHtml);
         }
-
       });
     },
 
     delete: function(postId) {
-          // send DELETE request to server to delete phrase
-          $.ajax({
-            type: 'DELETE',
-            url: '/blogposts/' + postId,
-            success: function(data) {
-              
-              // remove deleted phrase from view
-              $('#blog-' + postId).remove();
-            }
-          });
-        },
+      // send DELETE request to server to delete phrase
+      $.ajax({
+        type: 'DELETE',
+        url: '/blogposts/' + postId,
+        success: function(data) {   
+          // remove deleted phrase from view
+          $('#blog-' + postId).remove();
+        }
+      });
+    },
 
     // Event Handlers for Updating/Deleting
 
@@ -80,50 +75,39 @@ $(function() {
         console.log("poop");
         // find the posts's id (stored in HTML as `data-id`)
         var postId = $(this).closest('.blogPost').attr('data-id');
-        
-        // udpate the phrase with form data
+        // udpate the post with form data
         var updatedUser = $(this).find('.updated-user').val();
         var updatedLoc = $(this).find('.updated-loc').val();
         var updatedDesc = $(this).find('.updated-post').val();
         postController.update(postId, updatedUser, updatedLoc, updatedDesc);
-      })
+        })
                       
-        // for delete: click event on `.delete-phrase` button
-      .on('click', '.removeButton', function(event) {
+        // for delete: click event on `.removeButton` button
+        .on('click', '.removeButton', function(event) {
         event.preventDefault();
-
-        // find the phrase's id
+        // find the post's id
         var postId = $(this).closest('.blogPost').attr('data-id');
-        
-        // delete the phrase
+        // delete the posts
         postController.delete(postId);
       });
     },
 
-    
-
     setupView: function() {
       // Append existing blog posts
       postController.all();
-
       // Add event handler to new blogpost
       $('#new-Entry').on('submit', function(event) {
         event.preventDefault();
-
         // create new blog post
         var $newUser = $('#user-name').val();
         var $newPlace = $('#user-place').val();
         var $newDesc = $('#user-post').val();
         postController.create($newUser, $newPlace, $newDesc);
-
         // form reset
         $(this)[0].reset();
         $('#user-name').focus();
       });
-
     }
-
-
   };
 
   postController.setupView();
