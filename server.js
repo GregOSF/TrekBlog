@@ -60,6 +60,17 @@ app.post('/blogposts', function (req, res) {
   });
 });
 
+// get one phrase
+app.get('/blogposts/:id', function (req, res) {
+  // set the value of the id
+  var targetId = req.params.id;
+
+  // find phrase in db by id
+  BlogPost.findOne({_id: targetId}, function (err, foundPost) {
+    res.json(foundPost);
+  });
+});
+
 // app.get('/blogposts/:id', function (req, res) {
 // 	var targetId = parseInt(req.params.id);
 // 	var foundPost = _.findWhere(posts, {id: targetId});
