@@ -45,6 +45,21 @@ app.get ('/blogposts', function(req, res) {
 		});
 });
 
+// create new phrase
+app.post('/blogposts', function (req, res) {
+  // create new phrase with form data (`req.body`)
+  var newPost = new BlogPost({
+  	user: req.body.user,
+  	place: req.body.place,
+  	post: req.body.post
+  });
+
+  // save new phrase in db
+  newPost.save(function (err, savedPost) {
+    res.json(savedPost);
+  });
+});
+
 // app.get('/blogposts/:id', function (req, res) {
 // 	var targetId = parseInt(req.params.id);
 // 	var foundPost = _.findWhere(posts, {id: targetId});
