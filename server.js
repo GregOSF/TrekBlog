@@ -71,6 +71,25 @@ app.get('/blogposts/:id', function (req, res) {
   });
 });
 
+// update phrase
+app.put('/blogposts/:id', function (req, res) {
+  // set the value of the id
+  var targetId = req.params.id;
+
+  // find phrase in db by id
+  BlogPost.findOne({_id: targetId}, function (err, foundPost) {
+    // update the phrase's word and definition
+    foundPost.user = req.body.user;
+    foundPost.place = req.body.place;
+    foundPost.post = req.body.post;
+
+    // save updated phrase in db
+    foundPost.save(function (err, savedPost) {
+      res.json(savedPost);
+    });
+  });
+});
+
 // app.get('/blogposts/:id', function (req, res) {
 // 	var targetId = parseInt(req.params.id);
 // 	var foundPost = _.findWhere(posts, {id: targetId});
