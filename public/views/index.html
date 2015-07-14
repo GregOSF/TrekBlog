@@ -69,7 +69,7 @@
   <!-- underscore template -->
   <script type="text/template" id="post-template">
 
-    <div class="blogPost" id="blog-<%= id %>" data-id="<%= id %>">
+    <div class="blogPost" id="blog-<%= _id %>" data-id="<%= _id %>">
       <p>
         <span style="font-weight:bold">Trekker:</span> <%= user %>
       </p>
@@ -80,11 +80,11 @@
        <span style="font-weight:bold">About My Trek:</span> <%= post %>
       </p>
     
-      <a class="edit-pencil" data-toggle="collapse" data-target='#update-<%= id %>'>
+      <a class="edit-pencil" data-toggle="collapse" data-target='#update-<%= _id %>'>
         <span class="glyphicon glyphicon-pencil edit"></span>
       </a>
 
-      <div class="collapse" id="update-<%= id %>">
+      <div class="collapse" id="update-<%= _id %>">
         <br>
         <form class="form-inline update-post">
           <input type="text" class="form-control updated-user" value="<%= user %>" placeholder="New User?">
