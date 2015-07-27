@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/public'));
 // tell app to use bodyParser middleware
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Connect to database
+// Connect to database; word after localhost is name of database
 mongoose.connect('mongodb://localhost/trekblog');
 
 var BlogPost = require('./models/blogpost');
